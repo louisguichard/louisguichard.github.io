@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis Guichard - Data Scientist & Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap');
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0,0,0);
+            }
+            40%, 43% {
+                transform: translate3d(0, -30px, 0);
+            }
+            70% {
+                transform: translate3d(0, -15px, 0);
+            }
+            90% {
+                transform: translate3d(0, -4px, 0);
+            }
+        }
+        .typewriter-cursor {
+            border-right: 2px solid #374151;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { border-color: #374151; }
+            51%, 100% { border-color: transparent; }
+        }
+        .scroll-header {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .scroll-header.visible {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+    
+    <!-- Scroll Header (same as option 1) -->
+    <header class="fixed top-0 left-0 right-0 z-50 scroll-header" id="scroll-header">
+        <div class="bg-white bg-opacity-90 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-5">
+                <nav class="flex justify-between items-center">
+                    <h1 class="text-xl font-light tracking-wide text-gray-900 hover:text-black transition-colors duration-300">
+                        Louis Guichard
+                    </h1>
+                    <div class="flex items-center space-x-8">
+                        <a href="https://www.linkedin.com/in/louisguichard/" target="_blank" rel="noopener noreferrer" 
+                           class="group/link relative text-sm font-light text-gray-600 hover:text-black transition-all duration-300 ease-out">
+                            LinkedIn
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover/link:w-full"></span>
+                        </a>
+                        <a href="https://github.com/louisguichard" target="_blank" rel="noopener noreferrer" 
+                           class="group/link relative text-sm font-light text-gray-600 hover:text-black transition-all duration-300 ease-out">
+                            GitHub
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover/link:w-full"></span>
+                        </a>
+                        <button id="contact-btn-header" 
+                                class="group/link relative text-sm font-light text-gray-600 hover:text-black transition-all duration-300 ease-out px-4 py-2 rounded-full border border-gray-200 hover:border-gray-400 hover:shadow-sm">
+                            Contact
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="h-screen flex flex-col justify-center items-start relative px-6 md:px-12 lg:px-24">
+        <div class="max-w-4xl ml-8">
+            <h1 id="typewriter-text" class="text-4xl md:text-5xl font-light text-gray-900 text-left leading-relaxed" style="min-height: 16rem; line-height: 1.4;">
+                <!-- Text will be typed here -->
+            </h1>
+        </div>
+        
+        <button id="scroll-to-projects" class="absolute bottom-24 md:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer opacity-0 transition-opacity duration-500" aria-label="Scroll to projects">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </button>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6 md:px-12 lg:px-24 pb-40">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-light mb-28 text-center tracking-wide text-gray-800">
+                Selected Works
+            </h2>
+            
+            <div id="projects-container" class="space-y-32 md:space-y-40">
+                <!-- Projects will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        console.log('Script starting...');
+
+        // Scroll header functionality
+        const scrollHeader = document.getElementById('scroll-header');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) { // Show header after scrolling 100px
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    scrollHeader.classList.add('visible');
+                } else {
+                    // Scrolling up
+                    scrollHeader.classList.add('visible');
+                }
+            } else {
+                // At the top
+                scrollHeader.classList.remove('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Scroll to projects functionality
+        document.getElementById('scroll-to-projects').addEventListener('click', function() {
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Contact button functionality (header)
+        document.getElementById('contact-btn-header').addEventListener('click', function() {
+            const btn = document.getElementById('contact-btn-header');
+            const originalText = btn.textContent;
+            
+            // Check if clipboard API is available and we're on HTTPS
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText('hello@louisguichard.fr').then(function() {
+                    btn.textContent = 'Email copied!';
+                    btn.classList.add('text-green-600', '!text-green-600');
+                    btn.classList.remove('hover:text-black');
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove('text-green-600', '!text-green-600');
+                        btn.classList.add('hover:text-black');
+                    }, 3000);
+                }).catch(function() {
+                    // Fallback if clipboard write fails
+                    btn.textContent = 'hello@louisguichard.fr';
+                    btn.classList.add('text-blue-600', '!text-blue-600');
+                    btn.classList.remove('hover:text-black');
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove('text-blue-600', '!text-blue-600');
+                        btn.classList.add('hover:text-black');
+                    }, 3000);
+                });
+            } else {
+                // Fallback for HTTP or unsupported browsers
+                btn.textContent = 'hello@louisguichard.fr';
+                btn.classList.add('text-blue-600', '!text-blue-600');
+                btn.classList.remove('hover:text-black');
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('text-blue-600', '!text-blue-600');
+                    btn.classList.add('hover:text-black');
+                }, 3000);
+            }
+        });
+
+        // Project colors for years
+        const yearColors = [
+            'bg-blue-50 text-blue-700',
+            'bg-green-50 text-green-700', 
+            'bg-purple-50 text-purple-700',
+            'bg-pink-50 text-pink-700',
+            'bg-yellow-50 text-yellow-700',
+            'bg-indigo-50 text-indigo-700',
+            'bg-red-50 text-red-700'
+        ];
+
+        // Simple typewriter effect
+        function startTypewriter() {
+            console.log('Starting typewriter...');
+            const isMobile = window.innerWidth < 768;
+            
+            // Different text formatting for mobile vs desktop
+            const text = isMobile 
+                ? "Hello, I'm Louis Guichard. Data Scientist. I build with data, design with care, code with purpose."
+                : "Hello, I'm Louis Guichard.\nData Scientist. I build with data,\ndesign with care, code with purpose.";
+            
+            const typewriterElement = document.getElementById('typewriter-text');
+            const scrollButton = document.getElementById('scroll-to-projects');
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    const char = text[index];
+                    
+                    if (char === '\n' && !isMobile) {
+                        typewriterElement.innerHTML += '<br>';
+                    } else if (char === '.' && isMobile) {
+                        // On mobile, add line break after periods with extra spacing
+                        typewriterElement.innerHTML += char + '<br><div class="h-2"></div>';
+                    } else {
+                        typewriterElement.innerHTML += char;
+                    }
+                    
+                    index++;
+                    
+                    let delay = 50;
+                    if (char === ',') delay = 200;
+                    if (char === '.') delay = isMobile ? 600 : 400; // Longer pause on mobile after periods
+                    
+                    setTimeout(type, delay);
+                } else {
+                    typewriterElement.innerHTML += '<span class="typewriter-cursor"></span>';
+                    setTimeout(() => {
+                        scrollButton.classList.remove('opacity-0');
+                        scrollButton.classList.add('opacity-100');
+                    }, 500);
+                }
+            }
+            
+            setTimeout(type, 1000);
+        }
+
+        // Load and display projects
+        async function loadProjects() {
+            console.log('Loading projects...');
+            try {
+                const response = await fetch('./projects.json');
+                const data = await response.json();
+                const projectsContainer = document.getElementById('projects-container');
+                
+                data.projects.forEach((project, index) => {
+                    const projectElement = createProjectCard(project, index);
+                    projectsContainer.appendChild(projectElement);
+                    
+                    // Add separator except for last item
+                    if (index < data.projects.length - 1) {
+                        const separator = document.createElement('hr');
+                        separator.className = 'border-t border-gray-200 max-w-3xl mx-auto my-20';
+                        projectsContainer.appendChild(separator);
+                    }
+                });
+                console.log('Projects loaded successfully');
+            } catch (error) {
+                console.error('Erreur lors du chargement des projets:', error);
+            }
+        }
+
+        function createProjectImagePlaceholder(title) {
+            return `
+                <div class="aspect-video w-full bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="flex items-center justify-center h-full text-gray-400">
+                        <div class="text-center p-8">
+                            <div class="text-xl font-light text-gray-500 mb-2">${title}</div>
+                            <div class="text-sm text-gray-400">No preview available</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createProjectCard(project, index) {
+            const article = document.createElement('article');
+            const isEven = index % 2 === 0;
+            const yearColor = yearColors[index % yearColors.length];
+            
+            // If no preview, center the text and use full width
+            if (!project.preview) {
+                article.className = 'flex flex-col items-center text-center max-w-3xl mx-auto';
+                article.innerHTML = `
+                    <div class="space-y-6">
+                        <div class="flex justify-center">
+                            <span class="text-lg font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
+                        </div>
+                        
+                        <h2 class="text-4xl font-light text-gray-900 tracking-wide">
+                            ${project.title}
+                        </h2>
+                        
+                        <p class="text-sm text-gray-400 uppercase tracking-widest font-light">
+                            ${project.tech}
+                        </p>
+                        
+                        <p class="text-lg text-gray-600 leading-relaxed max-w-2xl">
+                            ${project.description}
+                        </p>
+
+                        <div class="flex items-center justify-center space-x-8 mt-8">
+                            ${project.url ? `
+                                <a href="${project.url}" target="_blank" rel="noopener noreferrer" 
+                                   class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
+                                    <span class="relative">
+                                        Visit Site
+                                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
+                                    </span>
+                                    <svg class="ml-2 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            ` : ''}
+                            ${project.github ? `
+                                <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
+                                   class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
+                                    <svg class="mr-2 h-4 w-4 transition-transform duration-300 group-hover/link:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    <span class="relative">
+                                        GitHub
+                                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
+                                    </span>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Original layout with preview image
+                article.className = 'grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center';
+                article.innerHTML = `
+                    <!-- Image Section - Takes 3/5 of the space on large screens -->
+                    <div class="lg:col-span-3 ${isEven ? 'lg:order-1' : 'lg:order-2'}">
+                        <a href="${project.url || project.github}" target="_blank" rel="noopener noreferrer" 
+                           class="block group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 ease-out"
+                           aria-label="View project: ${project.title}">
+                            <div class="transition-all duration-700 ease-out transform group-hover:scale-105">
+                                <div class="aspect-video w-full rounded-xl overflow-hidden">
+                                    <img src="${project.preview}" alt="${project.title}" class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:brightness-110">
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500 ease-out"></div>
+                        </a>
+                    </div>
+
+                    <!-- Text Section - Takes 2/5 of the space on large screens -->
+                    <div class="lg:col-span-2 ${isEven ? 'lg:order-2 text-left' : 'lg:order-1 lg:text-right'}">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 ${isEven ? 'justify-start' : 'lg:justify-end'}">
+                                <span class="text-lg font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
+                            </div>
+                            
+                            <h2 class="text-3xl font-light text-gray-900 tracking-wide">
+                                ${project.title}
+                            </h2>
+                            
+                            <p class="text-sm text-gray-400 uppercase tracking-widest font-light">
+                                ${project.tech}
+                            </p>
+                            
+                            <p class="text-base text-gray-600 leading-relaxed">
+                                ${project.description}
+                            </p>
+
+                            <div class="flex items-center space-x-6 mt-6 ${isEven ? 'justify-start' : 'lg:justify-end'}">
+                                ${project.url ? `
+                                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" 
+                                       class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
+                                        <span class="relative">
+                                            Visit Site
+                                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
+                                        </span>
+                                        <svg class="ml-2 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                    </a>
+                                ` : ''}
+                                ${project.github ? `
+                                    <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
+                                       class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
+                                        <svg class="mr-2 h-4 w-4 transition-transform duration-300 group-hover/link:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                        </svg>
+                                        <span class="relative">
+                                            GitHub
+                                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
+                                        </span>
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return article;
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting everything...');
+            startTypewriter();
+            loadProjects();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,62 @@
+{
+    "projects": [
+        {
+            "title": "Papilles",
+            "year": "2025",
+            "description": "A visual cookbook made for home chefs. Create, organize, and cook your favorite recipes with an elegant and intuitive interface.",
+            "tech": "Cooking / Generative AI, Python, Django, Supabase, GCP",
+            "url": "https://papilles.louisguichard.fr",
+            "github": "https://github.com/louisguichard/papilles",
+            "preview": "media/papilles.png"
+        },
+        {
+            "title": "English Buddy",
+            "year": "2025",
+            "description": "Practice English conversation and improve your skills with AI feedback and pronunciation insights.",
+            "tech": "Learning App / Generative AI, Python, Flask, GCP",
+            "url": "https://englishbuddy.louisguichard.fr",
+            "github": "https://github.com/louisguichard/english-buddy",
+            "preview": "media/english-buddy.png"
+        },
+        {
+            "title": "Debate AI",
+            "year": "2025",
+            "description": "Create and observe AI-powered debates between characters you define.",
+            "tech": "AI Playground / Generative AI, Python, Streamlit",
+            "github": "https://github.com/louisguichard/debate-ai"
+        },
+        {
+            "title": "Cursor Feedback",
+            "year": "2025",
+            "description": "A lightweight feedback tool designed to reduce the need for frequent Cursor Agent requests.",
+            "tech": "Developer Tool / Python",
+            "github": "https://github.com/louisguichard/cursor-feedback"
+        },
+        {
+            "title": "Life Pulse",
+            "year": "2024",
+            "description": "A daily life tracker that helps you monitor your habits, goals, and overall well-being.",
+            "tech": "Wellness / Python, HTML, CSS",
+            "github": "https://github.com/louisguichard/life-pulse",
+            "preview": "media/life-pulse.png"
+        },
+        {
+            "title": "Des Chiffres Et Des Lettres",
+            "year": "2024",
+            "description": "A family-friendly adaptation of the classic French game \"Des chiffres et des lettres\" - perfect for brain training and fun with family and friends.",
+            "tech": "Game / Python, HTML, CSS, GCP",
+            "url": "https://chiffresetlettres.louisguichard.fr",
+            "github": "https://github.com/louisguichard/chiffres-et-lettres",
+            "preview": "media/chiffres-et-lettres.png"
+        },
+        {
+            "title": "Pictify",
+            "year": "2023",
+            "description": "Upload a picture and get a personalized Spotify playlist based on the mood, colors, and emotions captured in your picture.",
+            "tech": "Music & AI / Deep Learning, Python, Streamlit",
+            "url": "https://pictify.louisguichard.fr",
+            "github": "https://github.com/louisguichard/pictify",
+            "preview": "media/pictify.png"
+        }
+    ]
+}
