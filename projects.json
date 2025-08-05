@@ -19,6 +19,14 @@
             "preview": "media/english-buddy.png"
         },
         {
+            "title": "Goal Tracker",
+            "year": "2025",
+            "description": "A web application to track your goals and progress with a gamified experience.",
+            "tech": "Productivity / Python, Flask, HTML, CSS",
+            "github": "https://github.com/louisguichard/goal-tracker",
+            "preview": "media/goal-tracker.png"
+        },
+        {
             "title": "Debate AI",
             "year": "2025",
             "description": "Create and observe AI-powered debates between characters you define.",
