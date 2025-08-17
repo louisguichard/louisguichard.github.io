@@ -1,6 +1,15 @@
 {
     "projects": [
         {
+            "title": "LLM Chess Arena",
+            "year": "2025",
+            "description": "Pick two AI models, watch a chess battle between them and use the result to update the leaderboard.",
+            "tech": "Chess & AI / Generative AI, Python, Flask, GCP",
+            "url": "https://chess.louisguichard.fr",
+            "github": "https://github.com/louisguichard/llm-chess-arena",
+            "preview": "media/llm-chess-arena.png"
+        },
+        {
             "title": "Papilles",
             "year": "2025",
             "description": "A visual cookbook made for home chefs. Create, organize, and cook your favorite recipes with an elegant and intuitive interface.",
