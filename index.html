@@ -6,30 +6,27 @@
     <title>Louis Guichard - Data Scientist & Creator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
         * {
             font-family: 'Inter', sans-serif;
         }
         html {
             scroll-behavior: smooth;
         }
-        .animate-bounce {
-            animation: bounce 2s infinite;
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #fafafa 0%, #eef3ff 30%, #fdedf2 60%, #fafafa 100%);
+            background-size: 300% 300%;
+            animation: gradientShift 12s ease infinite;
         }
-        @keyframes bounce {
-            0%, 20%, 53%, 80%, 100% {
-                transform: translate3d(0,0,0);
-            }
-            40%, 43% {
-                transform: translate3d(0, -30px, 0);
-            }
-            70% {
-                transform: translate3d(0, -15px, 0);
-            }
-            90% {
-                transform: translate3d(0, -4px, 0);
-            }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+
+        /* Typewriter cursor */
         .typewriter-cursor {
             border-right: 2px solid #374151;
             animation: blink 1s infinite;
@@ -38,56 +35,125 @@
             0%, 50% { border-color: #374151; }
             51%, 100% { border-color: transparent; }
         }
+
+        /* Bounce arrow */
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0, -20px, 0); }
+            70% { transform: translate3d(0, -10px, 0); }
+            90% { transform: translate3d(0, -4px, 0); }
+        }
+
+        /* Scroll header */
         .scroll-header {
             transform: translateY(-100%);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .scroll-header.visible {
             transform: translateY(0);
         }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Project image hover */
+        .project-image-wrapper {
+            transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-image-wrapper:hover {
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+        .project-image-wrapper img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-image-wrapper:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Subtle divider */
+        .project-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
     </style>
 </head>
-<body class="min-h-screen bg-white text-gray-900">
+<body class="min-h-screen bg-white text-gray-900 antialiased">
     
-    <!-- Scroll Header (same as option 1) -->
+    <!-- Scroll Header -->
     <header class="fixed top-0 left-0 right-0 z-50 scroll-header" id="scroll-header">
-        <div class="bg-white bg-opacity-90 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-5">
+        <div class="bg-white/80 backdrop-blur-xl border-b border-gray-200/40">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-4">
                 <nav class="flex justify-between items-center">
-                    <h1 class="text-xl font-light tracking-wide text-gray-900 hover:text-black transition-colors duration-300">
+                    <a href="#" class="text-xl font-light tracking-wide text-gray-900 hover:text-black transition-colors duration-300">
                         Louis Guichard
-                    </h1>
-                    <div class="flex items-center space-x-8">
+                    </a>
+                    <!-- Desktop links -->
+                    <div class="hidden sm:flex items-center space-x-8">
                         <a href="https://www.linkedin.com/in/louisguichard/" target="_blank" rel="noopener noreferrer" 
-                           class="group/link relative text-sm font-light text-gray-600 hover:text-black transition-all duration-300 ease-out">
+                           class="group/link relative text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300 ease-out">
                             LinkedIn
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover/link:w-full"></span>
+                            <span class="absolute -bottom-1 left-0 w-0 h-px bg-gray-900 transition-all duration-300 ease-out group-hover/link:w-full"></span>
                         </a>
                         <a href="https://github.com/louisguichard" target="_blank" rel="noopener noreferrer" 
-                           class="group/link relative text-sm font-light text-gray-600 hover:text-black transition-all duration-300 ease-out">
+                           class="group/link relative text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300 ease-out">
                             GitHub
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover/link:w-full"></span>
+                            <span class="absolute -bottom-1 left-0 w-0 h-px bg-gray-900 transition-all duration-300 ease-out group-hover/link:w-full"></span>
                         </a>
                         <button id="contact-btn-header" 
-                                class="group/link relative text-sm font-light text-gray-600 hover:text-black transition-all duration-300 ease-out px-4 py-2 rounded-full border border-gray-200 hover:border-gray-400 hover:shadow-sm">
+                                class="text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300 ease-out px-5 py-2 rounded-full border border-gray-200 hover:border-gray-400 hover:shadow-sm cursor-pointer">
                             Contact
                         </button>
                     </div>
+                    <!-- Mobile burger -->
+                    <button id="mobile-menu-btn" class="sm:hidden p-2 text-gray-700 cursor-pointer" aria-label="Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </nav>
+            </div>
+        </div>
+        <!-- Mobile menu dropdown -->
+        <div id="mobile-menu" class="sm:hidden hidden bg-white/95 backdrop-blur-xl border-b border-gray-200/40">
+            <div class="px-6 py-4 space-y-4">
+                <a href="https://www.linkedin.com/in/louisguichard/" target="_blank" rel="noopener noreferrer" 
+                   class="block text-sm font-light text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/louisguichard" target="_blank" rel="noopener noreferrer" 
+                   class="block text-sm font-light text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                    GitHub
+                </a>
+                <button id="contact-btn-mobile" 
+                        class="block text-sm font-light text-gray-600 hover:text-gray-900 transition-colors duration-300 cursor-pointer">
+                    Contact
+                </button>
             </div>
         </div>
     </header>
     
     <!-- Hero Section -->
-    <section class="h-screen flex flex-col justify-center items-start relative px-6 md:px-12 lg:px-24">
-        <div class="max-w-4xl ml-8">
-            <h1 id="typewriter-text" class="text-4xl md:text-5xl font-light text-gray-900 text-left leading-relaxed" style="min-height: 16rem; line-height: 1.4;">
+    <section class="flex flex-col justify-center items-start relative px-6 md:px-12 lg:px-24 hero-gradient" style="min-height: 100dvh;">
+        <div class="max-w-4xl ml-4 md:ml-8">
+            <h1 id="typewriter-text" class="text-3xl md:text-5xl font-extralight text-gray-900 text-left leading-[1.7] md:leading-[1.8]" style="min-height: 12rem;">
                 <!-- Text will be typed here -->
             </h1>
         </div>
         
-        <button id="scroll-to-projects" class="absolute bottom-24 md:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer opacity-0 transition-opacity duration-500" aria-label="Scroll to projects">
-            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="scroll-to-projects" class="absolute bottom-6 md:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer opacity-0 transition-opacity duration-500" aria-label="Scroll to projects">
+            <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
@@ -96,19 +162,18 @@
     <!-- Projects Section -->
     <section id="projects" class="py-32 px-6 md:px-12 lg:px-24 pb-40">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-light mb-28 text-center tracking-wide text-gray-800">
+            <h2 class="text-5xl md:text-6xl font-extralight mb-6 text-center tracking-wide text-gray-800 reveal">
                 Selected Works
             </h2>
+            <p class="text-center text-gray-400 font-light mb-28 reveal">Personal projects built with curiosity and care</p>
             
-            <div id="projects-container" class="space-y-32 md:space-y-40">
+            <div id="projects-container" class="space-y-28 md:space-y-36">
                 <!-- Projects will be loaded here -->
             </div>
         </div>
     </section>
 
     <script>
-        console.log('Script starting...');
-
         // Scroll header functionality
         const scrollHeader = document.getElementById('scroll-header');
         let lastScrollTop = 0;
@@ -116,20 +181,26 @@
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            if (scrollTop > 100) { // Show header after scrolling 100px
-                if (scrollTop > lastScrollTop) {
-                    // Scrolling down
-                    scrollHeader.classList.add('visible');
-                } else {
-                    // Scrolling up
-                    scrollHeader.classList.add('visible');
-                }
+            if (scrollTop > 100) {
+                scrollHeader.classList.add('visible');
             } else {
-                // At the top
                 scrollHeader.classList.remove('visible');
             }
             
             lastScrollTop = scrollTop;
+        });
+
+        // Scroll reveal observer
+        const revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            revealObserver.observe(el);
         });
 
         // Scroll to projects functionality
@@ -137,65 +208,94 @@
             document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Contact button functionality (header)
-        document.getElementById('contact-btn-header').addEventListener('click', function() {
-            const btn = document.getElementById('contact-btn-header');
-            const originalText = btn.textContent;
+        // Contact button functionality (reusable)
+        function handleContactClick(btn, textElement) {
+            const originalText = textElement ? textElement.textContent : btn.textContent;
             
-            // Check if clipboard API is available and we're on HTTPS
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText('hello@louisguichard.fr').then(function() {
-                    btn.textContent = 'Email copied!';
-                    btn.classList.add('text-green-600', '!text-green-600');
-                    btn.classList.remove('hover:text-black');
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.classList.remove('text-green-600', '!text-green-600');
-                        btn.classList.add('hover:text-black');
-                    }, 3000);
+                    if (textElement) {
+                        textElement.textContent = 'Email copied!';
+                    } else {
+                        btn.textContent = 'Email copied!';
+                    }
+                    btn.classList.add('!text-green-600');
+                    setTimeout(function() {
+                        if (textElement) {
+                            textElement.textContent = originalText;
+                        } else {
+                            btn.textContent = originalText;
+                        }
+                        btn.classList.remove('!text-green-600');
+                    }, 2500);
                 }).catch(function() {
-                    // Fallback if clipboard write fails
-                    btn.textContent = 'hello@louisguichard.fr';
-                    btn.classList.add('text-blue-600', '!text-blue-600');
-                    btn.classList.remove('hover:text-black');
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.classList.remove('text-blue-600', '!text-blue-600');
-                        btn.classList.add('hover:text-black');
+                    if (textElement) {
+                        textElement.textContent = 'hello@louisguichard.fr';
+                    } else {
+                        btn.textContent = 'hello@louisguichard.fr';
+                    }
+                    setTimeout(function() {
+                        if (textElement) {
+                            textElement.textContent = originalText;
+                        } else {
+                            btn.textContent = originalText;
+                        }
                     }, 3000);
                 });
             } else {
-                // Fallback for HTTP or unsupported browsers
-                btn.textContent = 'hello@louisguichard.fr';
-                btn.classList.add('text-blue-600', '!text-blue-600');
-                btn.classList.remove('hover:text-black');
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.classList.remove('text-blue-600', '!text-blue-600');
-                    btn.classList.add('hover:text-black');
+                if (textElement) {
+                    textElement.textContent = 'hello@louisguichard.fr';
+                } else {
+                    btn.textContent = 'hello@louisguichard.fr';
+                }
+                setTimeout(function() {
+                    if (textElement) {
+                        textElement.textContent = originalText;
+                    } else {
+                        btn.textContent = originalText;
+                    }
                 }, 3000);
             }
-        });
+        }
 
-        // Project colors for years
+        document.getElementById('contact-btn-header').addEventListener('click', function() {
+            handleContactClick(this, null);
+        });
+        document.getElementById('contact-btn-mobile').addEventListener('click', function() {
+            handleContactClick(this, null);
+        });
+        // Mobile menu toggle
+        var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var burgerIcon = document.getElementById('burger-icon');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            var isOpen = !mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.add('hidden');
+                burgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                burgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+        // Year badge colors (blue & rose/red tones)
         const yearColors = [
-            'bg-blue-50 text-blue-700',
-            'bg-green-50 text-green-700', 
-            'bg-purple-50 text-purple-700',
-            'bg-pink-50 text-pink-700',
-            'bg-yellow-50 text-yellow-700',
-            'bg-indigo-50 text-indigo-700',
-            'bg-red-50 text-red-700'
+            'bg-blue-50 text-blue-600 border border-blue-100',
+            'bg-rose-50 text-rose-600 border border-rose-100',
+            'bg-sky-50 text-sky-600 border border-sky-100',
+            'bg-pink-50 text-pink-600 border border-pink-100',
+            'bg-indigo-50 text-indigo-600 border border-indigo-100',
+            'bg-red-50 text-red-500 border border-red-100',
+            'bg-blue-50 text-blue-500 border border-blue-100'
         ];
 
-        // Simple typewriter effect
+        // Typewriter effect
         function startTypewriter() {
-            console.log('Starting typewriter...');
             const isMobile = window.innerWidth < 768;
             
-            // Different text formatting for mobile vs desktop
             const text = isMobile 
-                ? "Hello, I'm Louis Guichard. Data Scientist. I build with data, design with care, code with purpose."
+                ? "Hello, I'm Louis Guichard. Data Scientist. I build with data,\ndesign with care,\ncode with purpose."
                 : "Hello, I'm Louis Guichard.\nData Scientist. I build with data,\ndesign with care, code with purpose.";
             
             const typewriterElement = document.getElementById('typewriter-text');
@@ -206,10 +306,9 @@
                 if (index < text.length) {
                     const char = text[index];
                     
-                    if (char === '\n' && !isMobile) {
+                    if (char === '\n') {
                         typewriterElement.innerHTML += '<br>';
-                    } else if (char === '.' && isMobile) {
-                        // On mobile, add line break after periods with extra spacing
+                    } else if (char === '.' && isMobile && index < text.length - 1) {
                         typewriterElement.innerHTML += char + '<br><div class="h-2"></div>';
                     } else {
                         typewriterElement.innerHTML += char;
@@ -217,109 +316,95 @@
                     
                     index++;
                     
-                    let delay = 50;
-                    if (char === ',') delay = 200;
-                    if (char === '.') delay = isMobile ? 600 : 400; // Longer pause on mobile after periods
+                    let delay = 45;
+                    if (char === ',') delay = 180;
+                    if (char === '.') delay = isMobile ? 500 : 350;
                     
                     setTimeout(type, delay);
                 } else {
                     typewriterElement.innerHTML += '<span class="typewriter-cursor"></span>';
-                    setTimeout(() => {
+                    setTimeout(function() {
                         scrollButton.classList.remove('opacity-0');
                         scrollButton.classList.add('opacity-100');
-                    }, 500);
+                    }, 300);
                 }
             }
             
-            setTimeout(type, 1000);
+            setTimeout(type, 800);
         }
 
         // Load and display projects
         async function loadProjects() {
-            console.log('Loading projects...');
             try {
                 const response = await fetch('./projects.json');
                 const data = await response.json();
                 const projectsContainer = document.getElementById('projects-container');
                 
-                data.projects.forEach((project, index) => {
+                data.projects.forEach(function(project, index) {
                     const projectElement = createProjectCard(project, index);
                     projectsContainer.appendChild(projectElement);
                     
-                    // Add separator except for last item
+                    // Add divider except for last item
                     if (index < data.projects.length - 1) {
-                        const separator = document.createElement('hr');
-                        separator.className = 'border-t border-gray-200 max-w-3xl mx-auto my-20';
-                        projectsContainer.appendChild(separator);
+                        const divider = document.createElement('div');
+                        divider.className = 'project-divider max-w-2xl mx-auto my-16';
+                        projectsContainer.appendChild(divider);
                     }
                 });
-                console.log('Projects loaded successfully');
+
+                // Observe new reveal elements
+                document.querySelectorAll('.reveal').forEach(function(el) {
+                    revealObserver.observe(el);
+                });
             } catch (error) {
                 console.error('Erreur lors du chargement des projets:', error);
             }
         }
 
-        function createProjectImagePlaceholder(title) {
-            return `
-                <div class="aspect-video w-full bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
-                    <div class="flex items-center justify-center h-full text-gray-400">
-                        <div class="text-center p-8">
-                            <div class="text-xl font-light text-gray-500 mb-2">${title}</div>
-                            <div class="text-sm text-gray-400">No preview available</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
         function createProjectCard(project, index) {
             const article = document.createElement('article');
+            article.className = 'reveal';
             const isEven = index % 2 === 0;
             const yearColor = yearColors[index % yearColors.length];
             
-            // If no preview, center the text and use full width
             if (!project.preview) {
-                article.className = 'flex flex-col items-center text-center max-w-3xl mx-auto';
+                // No-preview layout: centered text
                 article.innerHTML = `
-                    <div class="space-y-6">
-                        <div class="flex justify-center">
-                            <span class="text-lg font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
-                        </div>
+                    <div class="flex flex-col items-center text-center max-w-2xl mx-auto space-y-5">
+                        <span class="text-sm font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
                         
-                        <h2 class="text-4xl font-light text-gray-900 tracking-wide">
+                        <h3 class="text-4xl font-extralight text-gray-900 tracking-wide">
                             ${project.title}
-                        </h2>
+                        </h3>
                         
-                        <p class="text-sm text-gray-400 uppercase tracking-widest font-light">
+                        <p class="text-sm text-gray-400 uppercase tracking-[0.2em] font-light">
                             ${project.tech}
                         </p>
                         
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-2xl">
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-lg">
                             ${project.description}
                         </p>
 
-                        <div class="flex items-center justify-center space-x-8 mt-8">
+                        <div class="flex items-center space-x-6 pt-2">
                             ${project.url ? `
                                 <a href="${project.url}" target="_blank" rel="noopener noreferrer" 
-                                   class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
+                                   class="group/link flex items-center text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300">
                                     <span class="relative">
                                         Visit Site
-                                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
+                                        <span class="absolute bottom-0 left-0 w-0 h-px bg-gray-900 transition-all duration-300 group-hover/link:w-full"></span>
                                     </span>
-                                    <svg class="ml-2 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="ml-1.5 h-3.5 w-3.5 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                     </svg>
                                 </a>
                             ` : ''}
                             ${project.github ? `
                                 <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
-                                   class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
-                                    <svg class="mr-2 h-4 w-4 transition-transform duration-300 group-hover/link:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
+                                   class="group/link flex items-center text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300">
+                                    <svg class="mr-1.5 h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                     <span class="relative">
                                         GitHub
-                                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
+                                        <span class="absolute bottom-0 left-0 w-0 h-px bg-gray-900 transition-all duration-300 group-hover/link:w-full"></span>
                                     </span>
                                 </a>
                             ` : ''}
@@ -327,67 +412,63 @@
                     </div>
                 `;
             } else {
-                // Original layout with preview image
-                article.className = 'grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center';
+                // Layout with preview image
                 article.innerHTML = `
-                    <!-- Image Section - Takes 3/5 of the space on large screens -->
-                    <div class="lg:col-span-3 ${isEven ? 'lg:order-1' : 'lg:order-2'}">
-                        <a href="${project.url || project.github}" target="_blank" rel="noopener noreferrer" 
-                           class="block group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 ease-out"
-                           aria-label="View project: ${project.title}">
-                            <div class="transition-all duration-700 ease-out transform group-hover:scale-105">
-                                <div class="aspect-video w-full rounded-xl overflow-hidden">
-                                    <img src="${project.preview}" alt="${project.title}" class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:brightness-110">
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
+                        <!-- Image Section -->
+                        <div class="lg:col-span-3 ${isEven ? 'lg:order-1' : 'lg:order-2'}">
+                            <a href="${project.url || project.github}" target="_blank" rel="noopener noreferrer" 
+                               class="block project-image-wrapper rounded-2xl overflow-hidden"
+                               aria-label="View project: ${project.title}">
+                                <div class="aspect-video w-full overflow-hidden rounded-2xl">
+                                    <img src="${project.preview}" alt="${project.title}" class="w-full h-full object-cover">
                                 </div>
-                            </div>
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500 ease-out"></div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
 
-                    <!-- Text Section - Takes 2/5 of the space on large screens -->
-                    <div class="lg:col-span-2 ${isEven ? 'lg:order-2 text-left' : 'lg:order-1 lg:text-right'}">
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-3 ${isEven ? 'justify-start' : 'lg:justify-end'}">
-                                <span class="text-lg font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
-                            </div>
-                            
-                            <h2 class="text-3xl font-light text-gray-900 tracking-wide">
-                                ${project.title}
-                            </h2>
-                            
-                            <p class="text-sm text-gray-400 uppercase tracking-widest font-light">
-                                ${project.tech}
-                            </p>
-                            
-                            <p class="text-base text-gray-600 leading-relaxed">
-                                ${project.description}
-                            </p>
+                        <!-- Text Section -->
+                        <div class="lg:col-span-2 ${isEven ? 'lg:order-2 text-left' : 'lg:order-1 lg:text-right'}">
+                            <div class="space-y-4">
+                                <div class="flex items-center ${isEven ? 'justify-start' : 'lg:justify-end'}">
+                                    <span class="text-sm font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
+                                </div>
+                                
+                                <h3 class="text-3xl md:text-4xl font-extralight text-gray-900 tracking-wide">
+                                    ${project.title}
+                                </h3>
+                                
+                                <p class="text-sm text-gray-400 uppercase tracking-[0.2em] font-light">
+                                    ${project.tech}
+                                </p>
+                                
+                                <p class="text-base md:text-lg text-gray-500 leading-relaxed">
+                                    ${project.description}
+                                </p>
 
-                            <div class="flex items-center space-x-6 mt-6 ${isEven ? 'justify-start' : 'lg:justify-end'}">
-                                ${project.url ? `
-                                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" 
-                                       class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
-                                        <span class="relative">
-                                            Visit Site
-                                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
-                                        </span>
-                                        <svg class="ml-2 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                        </svg>
-                                    </a>
-                                ` : ''}
-                                ${project.github ? `
-                                    <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
-                                       class="group/link flex items-center text-sm font-medium text-gray-700 hover:text-black transition-all duration-300 ease-in-out">
-                                        <svg class="mr-2 h-4 w-4 transition-transform duration-300 group-hover/link:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                        </svg>
-                                        <span class="relative">
-                                            GitHub
-                                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover/link:w-full"></span>
-                                        </span>
-                                    </a>
-                                ` : ''}
+                                <div class="flex items-center space-x-6 pt-2 ${isEven ? 'justify-start' : 'lg:justify-end'}">
+                                    ${project.url ? `
+                                        <a href="${project.url}" target="_blank" rel="noopener noreferrer" 
+                                           class="group/link flex items-center text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300">
+                                            <span class="relative">
+                                                Visit Site
+                                                <span class="absolute bottom-0 left-0 w-0 h-px bg-gray-900 transition-all duration-300 group-hover/link:w-full"></span>
+                                            </span>
+                                            <svg class="ml-1.5 h-3.5 w-3.5 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </a>
+                                    ` : ''}
+                                    ${project.github ? `
+                                        <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
+                                           class="group/link flex items-center text-sm font-light text-gray-500 hover:text-gray-900 transition-all duration-300">
+                                            <svg class="mr-1.5 h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                            <span class="relative">
+                                                GitHub
+                                                <span class="absolute bottom-0 left-0 w-0 h-px bg-gray-900 transition-all duration-300 group-hover/link:w-full"></span>
+                                            </span>
+                                        </a>
+                                    ` : ''}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -399,10 +480,9 @@
 
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, starting everything...');
             startTypewriter();
             loadProjects();
         });
     </script>
 </body>
-</html> 
+</html>
