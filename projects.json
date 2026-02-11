@@ -10,6 +10,15 @@
             "preview": "media/llm-chess-arena.png"
         },
         {
+            "title": "English Buddy",
+            "year": "2025",
+            "description": "Practice English conversation and improve your skills with AI feedback and pronunciation insights.",
+            "tech": "Learning App / Generative AI, Python, Flask, GCP",
+            "url": "https://speakea.louisguichard.fr",
+            "github": "https://github.com/louisguichard/english-buddy",
+            "preview": "media/english-buddy.png"
+        },
+        {
             "title": "Papilles",
             "year": "2025",
             "description": "A visual cookbook made for home chefs. Create, organize, and cook your favorite recipes with an elegant and intuitive interface.",
@@ -17,15 +26,6 @@
             "url": "https://papilles.louisguichard.fr",
             "github": "https://github.com/louisguichard/papilles",
             "preview": "media/papilles.png"
-        },
-        {
-            "title": "English Buddy",
-            "year": "2025",
-            "description": "Practice English conversation and improve your skills with AI feedback and pronunciation insights.",
-            "tech": "Learning App / Generative AI, Python, Flask, GCP",
-            "url": "https://englishbuddy.louisguichard.fr",
-            "github": "https://github.com/louisguichard/english-buddy",
-            "preview": "media/english-buddy.png"
         },
         {
             "title": "Goal Tracker",
