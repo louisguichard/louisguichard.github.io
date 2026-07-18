@@ -1,6 +1,28 @@
 {
     "projects": [
         {
+            "title": "Impostral",
+            "year": "2026",
+            "description": "A social bluffing game where humans hunt and eliminate hidden AIs, while Mistral agents must identify and eliminate the humans before being exposed.",
+            "tech": "Social Game / Mistral, Voxtral, FastAPI, WebSockets",
+            "award": "3rd place · Mistral Vibe Hackathon",
+            "url": "https://impostral.com/",
+            "github": "https://github.com/MistralGagnant/impostral",
+            "preview": "media/impostral.jpg",
+            "previewAlt": "Impostral social bluffing game home screen"
+        },
+        {
+            "title": "World Cup Simulator",
+            "year": "2026",
+            "description": "A live, interactive World Cup companion blending scores, market-implied odds and Monte Carlo simulations for fans following the tournament on site and around the world.",
+            "tech": "Sports Analytics / React, TypeScript, Vite, Monte Carlo",
+            "impact": "20,000+ users",
+            "url": "https://worldcup.louisguichard.fr/",
+            "github": "https://github.com/louisguichard/world-cup",
+            "preview": "media/world-cup-simulator.png",
+            "previewAlt": "World Cup Lab interactive tournament bracket"
+        },
+        {
             "title": "LLM Chess Arena",
             "year": "2025",
             "description": "Pick two AI models, watch a chess battle between them and use the result to update the leaderboard.",

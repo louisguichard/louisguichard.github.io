@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louis Guichard - Data Scientist & Creator</title>
+    <title>Louis Guichard - ML Engineer & Creator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
@@ -148,7 +148,7 @@
     <section class="flex flex-col justify-center items-start relative px-6 md:px-12 lg:px-24 hero-gradient" style="min-height: 100dvh;">
         <div class="max-w-4xl ml-4 md:ml-8">
             <h1 id="typewriter-text" class="text-3xl md:text-5xl font-extralight text-gray-900 text-left leading-[1.7] md:leading-[1.8]" style="min-height: 12rem;">
-                <noscript>Hello, I'm Louis Guichard.<br>Data Scientist. I build with data,<br>design with care, code with purpose.</noscript>
+                <noscript>Hello, I'm Louis Guichard.<br>ML Engineer. I build with data,<br>design with care, code with purpose.</noscript>
             </h1>
         </div>
         
@@ -170,6 +170,8 @@
             <div id="projects-container" class="space-y-28 md:space-y-36">
                 <noscript>
                     <ul style="list-style: disc; padding-left: 1.5rem; font-size: 1.1rem; color: #555; line-height: 2;">
+                        <li><strong>Impostral</strong> (2026) — A social bluffing game where humans hunt and eliminate hidden AIs, while Mistral agents must identify and eliminate the humans before being exposed. <em>Social Game / Mistral, Voxtral, FastAPI, WebSockets. 3rd place at the Mistral Vibe Hackathon.</em> <a href="https://impostral.com/">Visit</a> · <a href="https://github.com/MistralGagnant/impostral">GitHub</a></li>
+                        <li><strong>World Cup Simulator</strong> (2026) — A live, interactive World Cup companion blending scores, market-implied odds and Monte Carlo simulations for fans following the tournament on site and around the world. <em>Sports Analytics / React, TypeScript, Vite, Monte Carlo. 20,000+ users.</em> <a href="https://worldcup.louisguichard.fr/">Visit</a> · <a href="https://github.com/louisguichard/world-cup">GitHub</a></li>
                         <li><strong>LLM Chess Arena</strong> (2025) — Pick two AI models, watch a chess battle between them and use the result to update the leaderboard. <em>Chess & AI / Generative AI, Python, Flask, GCP.</em> <a href="https://chess.louisguichard.fr">Visit</a> · <a href="https://github.com/louisguichard/llm-chess-arena">GitHub</a></li>
                         <li><strong>English Buddy</strong> (2025) — Practice English conversation and improve your skills with AI feedback and pronunciation insights. <em>Learning App / Generative AI, Python, Flask, GCP.</em> <a href="https://speakea.louisguichard.fr">Visit</a> · <a href="https://github.com/louisguichard/english-buddy">GitHub</a></li>
                         <li><strong>Papilles</strong> (2025) — A visual cookbook made for home chefs. Create, organize, and cook your favorite recipes with an elegant and intuitive interface. <em>Cooking / Generative AI, Python, Django, Supabase, GCP.</em> <a href="https://papilles.louisguichard.fr">Visit</a> · <a href="https://github.com/louisguichard/papilles">GitHub</a></li>
@@ -307,8 +309,8 @@
             const isMobile = window.innerWidth < 768;
             
             const text = isMobile 
-                ? "Hello, I'm Louis Guichard. Data Scientist. I build with data,\ndesign with care,\ncode with purpose."
-                : "Hello, I'm Louis Guichard.\nData Scientist. I build with data,\ndesign with care, code with purpose.";
+                ? "Hello, I'm Louis Guichard. ML Engineer. I build with data,\ndesign with care,\ncode with purpose."
+                : "Hello, I'm Louis Guichard.\nML Engineer. I build with data,\ndesign with care, code with purpose.";
             
             const typewriterElement = document.getElementById('typewriter-text');
             const scrollButton = document.getElementById('scroll-to-projects');
@@ -383,7 +385,21 @@
                 // No-preview layout: centered text
                 article.innerHTML = `
                     <div class="flex flex-col items-center text-center max-w-2xl mx-auto space-y-5">
-                        <span class="text-sm font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <span class="text-sm font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
+                            ${project.impact ? `
+                                <span class="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+                                    ${project.impact}
+                                </span>
+                            ` : ''}
+                            ${project.award ? `
+                                <span class="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-100">
+                                    <span aria-hidden="true">★</span>
+                                    ${project.award}
+                                </span>
+                            ` : ''}
+                        </div>
                         
                         <h3 class="text-4xl font-extralight text-gray-900 tracking-wide">
                             ${project.title}
@@ -433,7 +449,7 @@
                                class="block project-image-wrapper rounded-2xl overflow-hidden"
                                aria-label="View project: ${project.title}">
                                 <div class="aspect-video w-full overflow-hidden rounded-2xl">
-                                    <img src="${project.preview}" alt="${project.title}" class="w-full h-full object-cover">
+                                    <img src="${project.preview}" alt="${project.previewAlt || project.title}" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                             </a>
                         </div>
@@ -441,8 +457,20 @@
                         <!-- Text Section -->
                         <div class="lg:col-span-2 ${isEven ? 'lg:order-2 text-left' : 'lg:order-1 lg:text-right'}">
                             <div class="space-y-4">
-                                <div class="flex items-center ${isEven ? 'justify-start' : 'lg:justify-end'}">
+                                <div class="flex flex-wrap items-center gap-2 ${isEven ? 'justify-start' : 'lg:justify-end'}">
                                     <span class="text-sm font-medium px-3 py-1 rounded-full ${yearColor}">${project.year}</span>
+                                    ${project.impact ? `
+                                        <span class="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+                                            ${project.impact}
+                                        </span>
+                                    ` : ''}
+                                    ${project.award ? `
+                                        <span class="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-100">
+                                            <span aria-hidden="true">★</span>
+                                            ${project.award}
+                                        </span>
+                                    ` : ''}
                                 </div>
                                 
                                 <h3 class="text-3xl md:text-4xl font-extralight text-gray-900 tracking-wide">
